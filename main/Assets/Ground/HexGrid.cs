@@ -10,38 +10,46 @@ public class HexGrid : MonoBehaviour
     // Map Dimensions
     public int gridWidth = 11;
     public int gridHeight = 11;
- 
+
     // Cell Dimensions
-    float gexWidth;
-    float gexHeight;
-    const float hexWidth = 1.73f;
-    const float hexHeight = 2.0f;
+    float hexWidth = 1.73f;
+    float hexHeight = 2.0f;
     public float gap = 0.0f;
- 
+    public float xHexScale = 1.0f;
+    public float yHexScale = 1.0f;
+    public float zHexScale = 1.0f;
+
     // Position of Hex 1
     Vector3 startPos;
  
     public void GenerateGrid()
     {
+        ScaleHex();
         AddGap();
         CalcStartPos();
         CreateGrid();
     }
+
+    void ScaleHex()
+    {
+        hexWidth = hexWidth * xHexScale;
+        hexHeight = hexHeight * zHexScale;
+    }
  
     void AddGap()
     {
-        gexWidth = hexWidth + hexWidth * gap;
-        gexHeight = hexHeight + hexHeight * gap;
+        hexWidth += hexWidth * gap;
+        hexHeight += hexHeight * gap;
     }
  
     void CalcStartPos()
     {
         float offset = 0;
         if (gridHeight / 2 % 2 != 0)
-            offset = gexWidth / 2;
+            offset = hexWidth / 2;
  
-        float x = -gexWidth * (gridWidth / 2) - offset;
-        float z = gexHeight * 0.75f * (gridHeight / 2);
+        float x = -hexWidth * (gridWidth / 2) - offset;
+        float z = hexHeight * 0.75f * (gridHeight / 2);
  
         startPos = new Vector3(x, 0, z);
     }
@@ -50,10 +58,10 @@ public class HexGrid : MonoBehaviour
     {
         float offset = 0;
         if (gridPos.y % 2 != 0)
-            offset = gexWidth / 2;
+            offset = hexWidth / 2;
  
-        float x = startPos.x + gridPos.x * gexWidth + offset;
-        float z = startPos.z - gridPos.y * gexHeight * 0.75f;
+        float x = startPos.x + gridPos.x * hexWidth + offset;
+        float z = startPos.z - gridPos.y * hexHeight * 0.75f;
  
         return new Vector3(x, 0, z);
     }
@@ -65,6 +73,7 @@ public class HexGrid : MonoBehaviour
             for (int x = 0; x < gridWidth; x++)
             {
                 Transform hex = Instantiate(hexPrefab) as Transform;
+                hex.localScale = new Vector3(xHexScale, yHexScale, zHexScale);
                 Vector2 gridPos = new Vector2(x, y);
                 hex.position = CalcWorldPos(gridPos);
                 hex.parent = this.transform;
@@ -79,5 +88,9 @@ public class HexGrid : MonoBehaviour
         {
             DestroyImmediate(this.transform.GetChild(0).gameObject);
         }
+
+        // Reset Adjusted Hex Dimensions
+        hexWidth = 1.73f;
+        hexHeight = 2.0f;
     }
 }
