@@ -19,6 +19,9 @@ public class HexGrid : MonoBehaviour
     public float yHexScale = 1.0f;
     public float zHexScale = 1.0f;
 
+    // Array of Surface Objects
+    public Transform[] objects;
+
     // Position of Hex 1
     Vector3 startPos;
  
@@ -78,6 +81,12 @@ public class HexGrid : MonoBehaviour
                 hex.position = CalcWorldPos(gridPos);
                 hex.parent = this.transform;
                 hex.name = "x" + x + "y" + y;
+
+                int index = Random.Range(0, objects.Length);
+                Transform obj = Instantiate(objects[index]) as Transform;
+                obj.position = hex.position;
+                obj.parent = hex;
+                obj.name = "Object";
             }
         }
     }

@@ -245,13 +245,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a63f81597b1b5cd0bb9edc0e4f372a18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hexPrefab: {fileID: 8276339666102485821, guid: e0066dbb3561202a096744bc4116dc51, type: 3}
+  hexPrefab: {fileID: 6539263653340615332, guid: df823eee354bdb0629c4acd8d158a0bc, type: 3}
   gridWidth: 11
   gridHeight: 11
   gap: 0.1
   xHexScale: 2
-  yHexScale: 5
+  yHexScale: 2
   zHexScale: 2
+  objects:
+  - {fileID: 6885049908262563643, guid: eced59b480850b6358be70f168667eba, type: 3}
+  - {fileID: 7373529558306837993, guid: 6d3dc371fce498428b75ed8512bc1908, type: 3}
+  - {fileID: 7020277162228025850, guid: 9fd79ac52aa98c15abc423d100184ea0, type: 3}
 --- !u!4 &723696156
 Transform:
   m_ObjectHideFlags: 0
