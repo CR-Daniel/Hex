@@ -77,7 +77,7 @@ public class HexGrid : MonoBehaviour
                 Vector2 gridPos = new Vector2(x, y);
                 hex.position = CalcWorldPos(gridPos);
                 hex.parent = this.transform;
-                hex.name = "Hexagon" + x + "|" + y;
+                hex.name = "x" + x + "y" + y;
             }
         }
     }
