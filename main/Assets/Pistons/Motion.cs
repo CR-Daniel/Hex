@@ -8,11 +8,10 @@ public class Motion : MonoBehaviour
     // get grid height
     public HexGrid hexGrid;
 
-    // Move Row by Row
     public void Test()
     {
-        // StartCoroutine(FullWave(0, hexGrid.gridWidth, 0, hexGrid.gridHeight));
-        StartCoroutine(RandomPiston(50, 0.2f, 10.0f, 3));
+        StartCoroutine(FullWave(0, hexGrid.gridWidth, 0, hexGrid.gridHeight));
+        // StartCoroutine(RandomPiston(50, 0.2f, 10.0f, 3));
     }
 
     // Move 1 Piston
