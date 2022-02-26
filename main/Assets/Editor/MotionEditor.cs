@@ -10,9 +10,9 @@ public class MotionEditor : Editor {
 
 		Motion mt = (Motion)target;
 
-		if (GUILayout.Button("Test1"))
+		if (GUILayout.Button("Test"))
 		{
-			mt.Test1();
+			mt.Test();
 		}
 	}
 }

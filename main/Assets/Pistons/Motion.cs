@@ -9,9 +9,10 @@ public class Motion : MonoBehaviour
     public HexGrid hexGrid;
 
     // Move Row by Row
-    public void Test1()
+    public void Test()
     {
-        StartCoroutine(FullWave(0, hexGrid.gridWidth, 0, hexGrid.gridHeight));
+        // StartCoroutine(FullWave(0, hexGrid.gridWidth, 0, hexGrid.gridHeight));
+        StartCoroutine(RandomPiston(50, 0.2f, 10.0f, 3));
     }
 
     // Move 1 Piston
@@ -47,6 +48,20 @@ public class Motion : MonoBehaviour
                 StartCoroutine(Wave(cell, 0.0f, 5.0f, 0.0f, 2));   
             }
             yield return new WaitForSeconds(0.5f);
+        }
+    }
+
+    // Move X Pistons at Random
+    IEnumerator RandomPiston(int qty, float period, float elevation, int speed)
+    {
+        for (int i = 0; i < qty; i++)
+        {
+            int x = Random.Range(0, hexGrid.gridWidth);
+            int y = Random.Range(0, hexGrid.gridWidth);
+
+            Transform cell = transform.Find("x" + x.ToString() + "y" + y.ToString());
+            StartCoroutine(Wave(cell, 0.0f, elevation, 0.0f, speed));
+            yield return new WaitForSeconds(period);
         }
     }
 }
