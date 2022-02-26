@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEditor;
 
 [CustomEditor(typeof(HexGrid))]
-public class CubeEditor : Editor {
+public class GridEditor : Editor {
 
 	public override void OnInspectorGUI()
 	{
